@@ -1,0 +1,25 @@
+name: flutter_application_4
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+
+dependencies:
+  cached_network_image: ^3.2.3
+  dio: ^5.4.0
+  flutter:
+    sdk: flutter
+  get: ^4.6.5
+  pull_to_refresh: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets: 
+    - assets/
