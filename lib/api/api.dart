@@ -13,7 +13,7 @@ class Api {
     final result = await httpManager.get(
       url: url,
       options: Options(headers: <String, dynamic>{
-        'x-api-key': "",
+        'x-api-key': "dH2kW4brIUaf9OGUqb7DXaWyGJSfwItR2lQ8l6QS",
       }),
     );
 

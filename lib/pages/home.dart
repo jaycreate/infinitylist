@@ -10,102 +10,168 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[100],
-      body: GetBuilder<HomeController>(
-          init: HomeController(),
-          builder: (controller) {
-            onScroll(controller);
-            return Column(children: [
-              // Header section
-              Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 25, horizontal: 25),
-                  alignment: Alignment.bottomCenter,
-                  height: 170,
-                  decoration: BoxDecoration(color: Colors.blue.shade800),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "Infinity List",
-                            style: TextStyle(
-                              fontSize: 26,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+    return SafeArea(
+      top: false,
+      child: Scaffold(
+        // backgroundColor: Colors.grey[100],
+        body: GetBuilder<HomeController>(
+            init: HomeController(),
+            builder: (controller) {
+              onScroll(controller);
+              return Column(children: [
+                // Header section
+                Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 25, horizontal: 25),
+                    alignment: Alignment.bottomCenter,
+                    height: 170,
+                    decoration: BoxDecoration(color: Colors.blue.shade800),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Infinity List",
+                              style: TextStyle(
+                                fontSize: 26,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          Text(
-                            "Page: ${controller.page - 1}",
-                            style: const TextStyle(
-                              fontSize: 17,
-                              color: Colors.white,
-                            ),
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: IconButton(
-                              icon: const Icon(
-                                Icons.search,
-                                size: 28,
+                            Text(
+                              "Page: ${controller.page - 1}",
+                              style: const TextStyle(
+                                fontSize: 17,
                                 color: Colors.white,
                               ),
-                              onPressed: () {},
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: IconButton(
-                              icon: const Icon(
-                                Icons.notifications,
-                                size: 28,
-                                color: Colors.white,
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: IconButton(
+                                icon: const Icon(
+                                  Icons.search,
+                                  size: 28,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {},
                               ),
-                              onPressed: () {},
                             ),
-                          ),
-                        ],
-                      )
-                    ],
-                  )),
-              Expanded(
-                child: RefreshIndicator(
-                  onRefresh: () async {
-                    controller.refreshData();
-                  },
-                  child: ListView.builder(
-                    controller: _scrollController,
-                    itemCount: controller.listData.length,
-                    itemBuilder: (context, index) {
-                      return itemList(
-                        controller.listData[index].no.toString(),
-                        controller.listData[index].fullName,
-                        controller.listData[index].companyName,
-                        controller.listData[index].imageUrl,
-                      );
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Stack(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.1),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: IconButton(
+                                    icon: Stack(
+                                      children: const [
+                                        Icon(
+                                          Icons.notifications,
+                                          size: 28,
+                                          color: Colors.white,
+                                        ),
+                                        Positioned(
+                                          right: 0,
+                                          child: CircleAvatar(
+                                            backgroundColor: Colors.red,
+                                            radius: 3.5,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    )),
+                Expanded(
+                  child: RefreshIndicator(
+                    onRefresh: () async {
+                      controller.refreshData();
                     },
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      itemCount: controller.listData.length,
+                      itemBuilder: (context, index) {
+                        return itemList(
+                          controller.listData[index].no.toString(),
+                          controller.listData[index].fullName,
+                          controller.listData[index].companyName,
+                          controller.listData[index].imageUrl,
+                        );
+                      },
+                    ),
                   ),
-                ),
-              )
-            ]);
-          }),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: scrollUp(),
+                )
+              ]);
+            }),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: scrollUp(),
+        // bottomNavigationBar: Container(
+        //     decoration: BoxDecoration(
+        //       color: Colors.white,
+        //       boxShadow: [
+        //         BoxShadow(
+        //           blurRadius: 20,
+        //           color: Colors.black.withOpacity(.1),
+        //         )
+        //       ],
+        //     ),
+        //     child: SafeArea(
+        //       child: Padding(
+        //         padding:
+        //             const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+        //         child: GNav(
+        //           rippleColor: Colors.grey[300]!,
+        //           hoverColor: Colors.grey[100]!,
+        //           gap: 8,
+        //           activeColor: Colors.black,
+        //           iconSize: 24,
+        //           padding:
+        //               const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        //           duration: const Duration(milliseconds: 400),
+        //           tabBackgroundColor: Colors.grey[100]!,
+        //           color: Colors.black,
+        //           tabs: const [
+        //             GButton(
+        //               icon: Icons.home,
+        //               text: 'Home',
+        //             ),
+        //             GButton(
+        //               icon: Icons.message,
+        //               text: 'Message',
+        //             ),
+        //             GButton(
+        //               icon: Icons.search,
+        //               text: 'Search',
+        //             ),
+        //             GButton(
+        //               icon: Icons.settings,
+        //               text: 'Settings',
+        //             ),
+        //           ],
+        //           selectedIndex: 0,
+        //           onTabChange: (index) {},
+        //         ),
+        //       ),
+        //     )),
+      ),
     );
   }
 
@@ -148,7 +214,8 @@ class Home extends StatelessWidget {
                 SizedBox(
                   width: 45,
                   height: 45,
-                  child: CachedNetworkImage(
+                  child: // Container(),
+                      CachedNetworkImage(
                     imageUrl: imageUrl,
                     placeholder: (context, url) {
                       return const Center(
@@ -197,7 +264,9 @@ class Home extends StatelessWidget {
               ],
             ),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed("/details", arguments: [no, imageUrl]);
+                },
                 icon: Icon(
                   Icons.chevron_right,
                   color: Colors.grey.shade500,
