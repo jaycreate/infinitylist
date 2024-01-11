@@ -99,11 +99,18 @@ class Details extends StatelessWidget {
                         orderCount("PACK", controller),
                         orderCount("PCS", controller),
                         const Divider(),
-                        const Padding(
-                          padding: EdgeInsets.only(
+                        Padding(
+                          padding: const EdgeInsets.only(
                               left: 20, right: 20, top: 15, bottom: 15),
                           child: AppTextInput(
-                            hintText: "Enter your name",
+                            hintText: "พิมพ์ข้อความ",
+                            trailing: GestureDetector(
+                              onTap: () {},
+                              child: const Icon(
+                                Icons.clear,
+                                color: Colors.black12,
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -114,7 +121,7 @@ class Details extends StatelessWidget {
                         left: 20, right: 20, top: 15, bottom: 15),
                     child: AppButton(
                       "Save & Close",
-                      onPressed: () => {},
+                      onPressed: () => Get.back(),
                       mainAxisSize: MainAxisSize.max,
                     ),
                   ),
@@ -174,23 +181,23 @@ class Details extends StatelessWidget {
   }
 
   Widget orderQty(String title, DetailsController controller) {
-    var _orderQty = 0;
+    var orderQty = 0;
     switch (title) {
       case 'CTN':
-        _orderQty = controller.ctn;
+        orderQty = controller.ctn;
         break;
 
       case 'PACK':
-        _orderQty = controller.pack;
+        orderQty = controller.pack;
         break;
 
       case 'PCS':
-        _orderQty = controller.pcs;
+        orderQty = controller.pcs;
         break;
     }
 
     return Text(
-      _orderQty.toString(),
+      orderQty.toString(),
       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
     );
   }

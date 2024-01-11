@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_4/pages/details.dart';
-import 'package:flutter_application_4/pages/home.dart';
+import 'package:flutter_application_4/pages/pages.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -17,10 +16,12 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey[100],
         // primarySwatch: generateMaterialColor(Palette.primary),
       ),
-      home: Home(),
+      home: const App(),
       getPages: [
-        GetPage(name: '/', page: () => Home()),
+        GetPage(name: '/', page: () => const App()),
+        GetPage(name: '/home', page: () => Home()),
         GetPage(name: '/details', page: () => const Details()),
+        GetPage(name: '/map', page: () => const Map()),
       ],
     );
   }

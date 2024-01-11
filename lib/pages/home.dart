@@ -7,6 +7,7 @@ class Home extends StatelessWidget {
   Home({super.key});
 
   final ScrollController _scrollController = ScrollController();
+  final GlobalController _globalController = Get.put(GlobalController());
 
   @override
   Widget build(BuildContext context) {
@@ -105,72 +106,63 @@ class Home extends StatelessWidget {
                     onRefresh: () async {
                       controller.refreshData();
                     },
-                    child: ListView.builder(
-                      controller: _scrollController,
-                      itemCount: controller.listData.length,
-                      itemBuilder: (context, index) {
-                        return itemList(
-                          controller.listData[index].no.toString(),
-                          controller.listData[index].fullName,
-                          controller.listData[index].companyName,
-                          controller.listData[index].imageUrl,
-                        );
-                      },
-                    ),
+                    child: controller.isInitialized.value
+                        ? ListView.builder(
+                            controller: _scrollController,
+                            itemCount: controller.listData.length,
+                            itemBuilder: (context, index) {
+                              return itemList(
+                                controller.listData[index].no.toString(),
+                                controller.listData[index].fullName,
+                                controller.listData[index].companyName,
+                                controller.listData[index].imageUrl,
+                              );
+                            },
+                          )
+                        : const Center(
+                            child: SizedBox(
+                            child: CircularProgressIndicator(
+                              color: Colors.grey,
+                              strokeWidth: 2,
+                            ),
+                          )),
                   ),
                 )
               ]);
             }),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: scrollUp(),
-        // bottomNavigationBar: Container(
-        //     decoration: BoxDecoration(
-        //       color: Colors.white,
-        //       boxShadow: [
-        //         BoxShadow(
-        //           blurRadius: 20,
-        //           color: Colors.black.withOpacity(.1),
-        //         )
-        //       ],
-        //     ),
-        //     child: SafeArea(
-        //       child: Padding(
-        //         padding:
-        //             const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
-        //         child: GNav(
-        //           rippleColor: Colors.grey[300]!,
-        //           hoverColor: Colors.grey[100]!,
-        //           gap: 8,
-        //           activeColor: Colors.black,
-        //           iconSize: 24,
-        //           padding:
-        //               const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-        //           duration: const Duration(milliseconds: 400),
-        //           tabBackgroundColor: Colors.grey[100]!,
-        //           color: Colors.black,
-        //           tabs: const [
-        //             GButton(
-        //               icon: Icons.home,
-        //               text: 'Home',
-        //             ),
-        //             GButton(
-        //               icon: Icons.message,
-        //               text: 'Message',
-        //             ),
-        //             GButton(
-        //               icon: Icons.search,
-        //               text: 'Search',
-        //             ),
-        //             GButton(
-        //               icon: Icons.settings,
-        //               text: 'Settings',
-        //             ),
-        //           ],
-        //           selectedIndex: 0,
-        //           onTabChange: (index) {},
-        //         ),
-        //       ),
-        //     )),
+
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 0,
+          items: [
+            BottomNavigationBarItem(
+              icon: const Icon(
+                Icons.home,
+              ),
+              label: "Home",
+              backgroundColor: Colors.blue.shade800,
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.map),
+              label: "Map",
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.dashboard),
+              label: "Menu",
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: "Settings",
+            ),
+          ],
+          onTap: (value) {
+            _globalController.setParams(value);
+            Get.toNamed("/map");
+          },
+        ),
+
+        //
       ),
     );
   }

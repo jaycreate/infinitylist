@@ -8,6 +8,7 @@ class HomeController extends GetxController {
 
   var page = 1;
   var preventCall = false;
+  var isInitialized = false.obs;
 
   @override
   void onInit() {
@@ -30,7 +31,7 @@ class HomeController extends GetxController {
     for (int i = 0; i < result.result; i++) {
       listData.add(UserModel.fromJson(result.data[i]));
     }
-
+    isInitialized(true);
     update();
   }
 }
