@@ -9,6 +9,7 @@ class HomeController extends GetxController {
   var page = 1;
   var preventCall = false;
   var isInitialized = false.obs;
+  var tabIndex = 0;
 
   @override
   void onInit() {
@@ -33,5 +34,9 @@ class HomeController extends GetxController {
     }
     isInitialized(true);
     update();
+  }
+
+  setTabIndex(index) {
+    tabIndex = index;
   }
 }

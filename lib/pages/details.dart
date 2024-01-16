@@ -11,124 +11,118 @@ class Details extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Detail Page ${Get.arguments[0]}",
-            style: const TextStyle(
-                color: Colors.black87,
-                fontSize: 22,
-                fontWeight: FontWeight.bold),
-          ),
-          backgroundColor: Colors.grey[100],
-          elevation: 0.3,
-          centerTitle: false,
-          leading: IconButton(
-              onPressed: () {
-                Get.back();
-              },
-              icon: const Icon(
-                Icons.chevron_left,
-                color: Colors.black87,
-              )),
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.share,
-                  color: Colors.black87,
-                ))
-          ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Detail Page ${Get.arguments[0]}",
+          style: const TextStyle(
+              color: Colors.black87, fontSize: 22, fontWeight: FontWeight.bold),
         ),
-        body: GetBuilder<DetailsController>(
-            init: DetailsController(),
-            builder: (controller) {
-              return Column(
-                children: [
-                  Expanded(
-                    child: ListView(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 16),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                color: Colors.grey[200],
-                                width: 150,
-                                height: 150,
-                                child: CachedNetworkImage(
-                                  imageUrl: Get.arguments[1],
-                                  placeholder: (context, url) {
-                                    return const Center(
-                                      child: SizedBox(
-                                        width: 25,
-                                        height: 25,
-                                        child: CircularProgressIndicator(
-                                          color: Colors.grey,
-                                          strokeWidth: 2,
-                                        ),
+        backgroundColor: Colors.grey[100],
+        elevation: 0.3,
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(
+              Icons.chevron_left,
+              color: Colors.black87,
+            )),
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.share,
+                color: Colors.black87,
+              ))
+        ],
+      ),
+      body: GetBuilder<DetailsController>(
+          init: DetailsController(),
+          builder: (controller) {
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 16),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              color: Colors.grey[200],
+                              width: 150,
+                              height: 150,
+                              child: CachedNetworkImage(
+                                imageUrl: Get.arguments[1],
+                                placeholder: (context, url) {
+                                  return const Center(
+                                    child: SizedBox(
+                                      width: 25,
+                                      height: 25,
+                                      child: CircularProgressIndicator(
+                                        color: Colors.grey,
+                                        strokeWidth: 2,
                                       ),
-                                    );
-                                  },
-                                  errorWidget: (context, url, error) {
-                                    // This was the reason for exception being triggered and rendered!
-                                    return const Center(
-                                      child: Text(
-                                        'Error',
-                                        style: TextStyle(color: Colors.red),
-                                      ),
-                                    );
-                                  },
-                                ),
+                                    ),
+                                  );
+                                },
+                                errorWidget: (context, url, error) {
+                                  // This was the reason for exception being triggered and rendered!
+                                  return const Center(
+                                    child: Text(
+                                      'Error',
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  );
+                                },
                               ),
-                              Flexible(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(controller.sampleData),
-                                ),
+                            ),
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(controller.sampleData),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        const Divider(),
-                        orderCount("CTN", controller),
-                        orderCount("PACK", controller),
-                        orderCount("PCS", controller),
-                        const Divider(),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 20, top: 15, bottom: 15),
-                          child: AppTextInput(
-                            hintText: "พิมพ์ข้อความ",
-                            trailing: GestureDetector(
-                              onTap: () {},
-                              child: const Icon(
-                                Icons.clear,
-                                color: Colors.black12,
-                              ),
+                      ),
+                      const Divider(),
+                      orderCount("CTN", controller),
+                      orderCount("PACK", controller),
+                      orderCount("PCS", controller),
+                      const Divider(),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 20, right: 20, top: 15, bottom: 15),
+                        child: AppTextInput(
+                          hintText: "พิมพ์ข้อความ",
+                          trailing: GestureDetector(
+                            onTap: () {},
+                            child: const Icon(
+                              Icons.clear,
+                              color: Colors.black12,
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 20, right: 20, top: 15, bottom: 15),
-                    child: AppButton(
-                      "Save & Close",
-                      onPressed: () => Get.back(),
-                      mainAxisSize: MainAxisSize.max,
-                    ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 15, bottom: 15),
+                  child: AppButton(
+                    "Save & Close",
+                    onPressed: () => Get.back(),
+                    mainAxisSize: MainAxisSize.max,
                   ),
-                ],
-              );
-            }),
-      ),
+                ),
+              ],
+            );
+          }),
     );
   }
 

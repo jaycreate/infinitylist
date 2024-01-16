@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_4/controller/map_controller.dart';
+import 'package:flutter_application_4/controller/gps_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class Map extends StatelessWidget {
-  const Map({super.key});
+class Gps extends StatelessWidget {
+  const Gps({super.key});
 
   static const LatLng sourceLocation = LatLng(13.93236, 100.5291093);
   static const LatLng destination = LatLng(13.8999571, 100.5403802);
@@ -16,7 +16,7 @@ class Map extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             title: const Text(
-              "Map Location",
+              "Gps Tracking",
               style: TextStyle(
                   color: Colors.black87,
                   fontSize: 22,
@@ -24,26 +24,9 @@ class Map extends StatelessWidget {
             ),
             backgroundColor: Colors.grey[100],
             elevation: 0.3,
-            centerTitle: false,
-            leading: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Icon(
-                  Icons.chevron_left,
-                  color: Colors.black87,
-                )),
-            actions: [
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.share,
-                    color: Colors.black87,
-                  ))
-            ],
           ),
-          body: GetBuilder<MapController>(
-              init: MapController(),
+          body: GetBuilder<GpsController>(
+              init: GpsController(),
               builder: (controller) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),

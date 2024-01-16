@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:location/location.dart';
 
-class MapController extends GetxController {
+class GpsController extends GetxController {
   Location location = Location();
   double latitude = 0.00;
   double longitude = 0.00;

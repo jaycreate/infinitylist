@@ -11,8 +11,11 @@ dependencies:
   dio: ^5.4.0
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   get: ^4.6.5
   google_maps_flutter: ^2.1.7
+  intl: ^0.17.0
   location: ^4.4.0
   pull_to_refresh: ^2.0.0
 
@@ -22,6 +25,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
+  # generate: true
   uses-material-design: true
   assets: 
     - assets/

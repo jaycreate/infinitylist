@@ -7,163 +7,128 @@ class Home extends StatelessWidget {
   Home({super.key});
 
   final ScrollController _scrollController = ScrollController();
-  final GlobalController _globalController = Get.put(GlobalController());
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      child: Scaffold(
-        // backgroundColor: Colors.grey[100],
-        body: GetBuilder<HomeController>(
-            init: HomeController(),
-            builder: (controller) {
-              onScroll(controller);
-              return Column(children: [
-                // Header section
-                Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 25, horizontal: 25),
-                    alignment: Alignment.bottomCenter,
-                    height: 170,
-                    decoration: BoxDecoration(color: Colors.blue.shade800),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "Infinity List",
-                              style: TextStyle(
-                                fontSize: 26,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
+    return Scaffold(
+      // backgroundColor: Colors.grey[100],
+      body: GetBuilder<HomeController>(
+          init: HomeController(),
+          builder: (controller) {
+            onScroll(controller);
+            return Column(children: [
+              // Header section
+              Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 25, horizontal: 25),
+                  alignment: Alignment.bottomCenter,
+                  height: 170,
+                  decoration: BoxDecoration(color: Colors.blue.shade800),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Infinity List",
+                            style: TextStyle(
+                              fontSize: 26,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
                             ),
-                            Text(
-                              "Page: ${controller.page - 1}",
-                              style: const TextStyle(
-                                fontSize: 17,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.1),
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: IconButton(
-                                icon: const Icon(
-                                  Icons.search,
-                                  size: 28,
-                                  color: Colors.white,
-                                ),
-                                onPressed: () {},
-                              ),
+                          ),
+                          Text(
+                            "Page: ${controller.page - 1}",
+                            style: const TextStyle(
+                              fontSize: 17,
+                              color: Colors.white,
                             ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Stack(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.black.withOpacity(0.1),
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: IconButton(
-                                    icon: Stack(
-                                      children: const [
-                                        Icon(
-                                          Icons.notifications,
-                                          size: 28,
-                                          color: Colors.white,
-                                        ),
-                                        Positioned(
-                                          right: 0,
-                                          child: CircleAvatar(
-                                            backgroundColor: Colors.red,
-                                            radius: 3.5,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    onPressed: () {},
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    )),
-                Expanded(
-                  child: RefreshIndicator(
-                    onRefresh: () async {
-                      controller.refreshData();
-                    },
-                    child: controller.isInitialized.value
-                        ? ListView.builder(
-                            controller: _scrollController,
-                            itemCount: controller.listData.length,
-                            itemBuilder: (context, index) {
-                              return itemList(
-                                controller.listData[index].no.toString(),
-                                controller.listData[index].fullName,
-                                controller.listData[index].companyName,
-                                controller.listData[index].imageUrl,
-                              );
-                            },
                           )
-                        : const Center(
-                            child: SizedBox(
-                            child: CircularProgressIndicator(
-                              color: Colors.grey,
-                              strokeWidth: 2,
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.search,
+                                size: 28,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {},
                             ),
-                          )),
-                  ),
-                )
-              ]);
-            }),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: scrollUp(),
-
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 0,
-          items: [
-            BottomNavigationBarItem(
-              icon: const Icon(
-                Icons.home,
-              ),
-              label: "Home",
-              backgroundColor: Colors.blue.shade800,
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.map),
-              label: "Map",
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.dashboard),
-              label: "Menu",
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: "Settings",
-            ),
-          ],
-          onTap: (value) {
-            _globalController.setParams(value);
-            Get.toNamed("/map");
-          },
-        ),
-
-        //
-      ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Stack(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: IconButton(
+                                  icon: Stack(
+                                    children: const [
+                                      Icon(
+                                        Icons.notifications,
+                                        size: 28,
+                                        color: Colors.white,
+                                      ),
+                                      Positioned(
+                                        right: 0,
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.red,
+                                          radius: 3.5,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  onPressed: () {},
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
+                  )),
+              Expanded(
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                    controller.refreshData();
+                  },
+                  child: controller.isInitialized.value
+                      ? ListView.builder(
+                          controller: _scrollController,
+                          itemCount: controller.listData.length,
+                          itemBuilder: (context, index) {
+                            return itemList(
+                              controller.listData[index].no.toString(),
+                              controller.listData[index].fullName,
+                              controller.listData[index].companyName,
+                              controller.listData[index].imageUrl,
+                            );
+                          },
+                        )
+                      : const Center(
+                          child: SizedBox(
+                          child: CircularProgressIndicator(
+                            color: Colors.grey,
+                            strokeWidth: 2,
+                          ),
+                        )),
+                ),
+              )
+            ]);
+          }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: scrollUp(),
     );
   }
 
@@ -206,7 +171,7 @@ class Home extends StatelessWidget {
                 SizedBox(
                   width: 45,
                   height: 45,
-                  child: // Container(),
+                  child: //Container(),
                       CachedNetworkImage(
                     imageUrl: imageUrl,
                     placeholder: (context, url) {

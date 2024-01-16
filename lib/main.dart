@@ -16,12 +16,12 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey[100],
         // primarySwatch: generateMaterialColor(Palette.primary),
       ),
-      home: const App(),
+      home: App(),
       getPages: [
-        GetPage(name: '/', page: () => const App()),
+        GetPage(name: '/', page: () => App()),
         GetPage(name: '/home', page: () => Home()),
         GetPage(name: '/details', page: () => const Details()),
-        GetPage(name: '/map', page: () => const Map()),
+        GetPage(name: '/gps', page: () => const Gps()),
       ],
     );
   }

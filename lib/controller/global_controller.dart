@@ -6,5 +6,7 @@ class GlobalController extends GetxController {
 
   setParams(int index) {
     pageIndex = index;
+    // print(index);
+    update();
   }
 }
