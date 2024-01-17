@@ -127,16 +127,21 @@ class Home extends StatelessWidget {
               )
             ]);
           }),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
       floatingActionButton: scrollUp(),
     );
   }
 
   Widget scrollUp() {
     return FloatingActionButton(
+        mini: true,
         elevation: 0,
-        backgroundColor: Colors.blue.withOpacity(0.5),
-        child: const Icon(Icons.arrow_upward),
+        heroTag: "scrollupfab",
+        backgroundColor: Colors.white.withOpacity(0.5),
+        child: const Icon(
+          Icons.arrow_upward,
+          color: Colors.black26,
+        ),
         onPressed: () {
           _scrollController.jumpTo(_scrollController.position.minScrollExtent);
         });
@@ -171,7 +176,7 @@ class Home extends StatelessWidget {
                 SizedBox(
                   width: 45,
                   height: 45,
-                  child: //Container(),
+                  child: //Container()
                       CachedNetworkImage(
                     imageUrl: imageUrl,
                     placeholder: (context, url) {

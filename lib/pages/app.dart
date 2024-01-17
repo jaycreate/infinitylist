@@ -5,113 +5,107 @@ import 'package:get/get.dart';
 import '../controller/controller.dart';
 
 class App extends StatelessWidget {
-  App({super.key});
-
-  final TextStyle unselectedLabelStyle = TextStyle(
-      color: Colors.white.withOpacity(0.5),
-      fontWeight: FontWeight.w500,
-      fontSize: 12);
-
-  final TextStyle selectedLabelStyle = const TextStyle(
-    color: Colors.white,
-    fontWeight: FontWeight.w500,
-    fontSize: 12,
-  );
-
-  buildBottomNavigationMenu(context, landingPageController) {
-    return Obx(() => MediaQuery(
-        data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-        child: SizedBox(
-          // height: 54,
-          child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            showUnselectedLabels: true,
-            showSelectedLabels: true,
-            onTap: landingPageController.changeTabIndex,
-            currentIndex: landingPageController.tabIndex.value,
-            // backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
-            // unselectedItemColor: Colors.white.withOpacity(0.5),
-            // selectedItemColor: Colors.white,
-            selectedItemColor: Colors.blue.shade800,
-            unselectedLabelStyle: unselectedLabelStyle,
-            selectedLabelStyle: selectedLabelStyle,
-
-            items: [
-              BottomNavigationBarItem(
-                icon: Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Icon(
-                    Icons.home,
-                    // size: 25.0,
-                  ),
-                ),
-                label: "หน้าหลัก",
-                backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
-              ),
-              BottomNavigationBarItem(
-                icon: Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Icon(
-                    Icons.gps_fixed,
-                    // size: 20.0,
-                  ),
-                ),
-                label: 'จีพีเอส',
-                // backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
-              ),
-              BottomNavigationBarItem(
-                icon: Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Icon(
-                    Icons.qr_code_2,
-                    // size: 20.0,
-                  ),
-                ),
-                label: 'คิวอาร์',
-                // backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
-              ),
-              BottomNavigationBarItem(
-                icon: Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Icon(
-                    Icons.settings,
-                    // size: 20.0,
-                  ),
-                ),
-                label: 'ตั่งค่า',
-                // backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
-              ),
-            ],
-          ),
-        )));
-  }
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final AppController landingPageController =
+    final AppController appController =
         Get.put(AppController(), permanent: false);
     return SafeArea(
         top: false,
         child: Scaffold(
-          // floatingActionButtonLocation:
-          //     FloatingActionButtonLocation.centerDocked,
-          // floatingActionButton: FloatingActionButton(
-          //   onPressed: () {},
-          //   child: Icon(Icons.add),
-          //   backgroundColor: Colors.blue.shade800,
-          //   elevation: 0,
-          // ),
-          bottomNavigationBar:
-              buildBottomNavigationMenu(context, landingPageController),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: FloatingActionButton(
+            heroTag: 'mainfab',
+            onPressed: () {},
+            backgroundColor: Colors.blue.shade800,
+            child: const Icon(Icons.add),
+            // elevation: 0,
+          ),
+          bottomNavigationBar: Obx(() => BottomAppBar(
+                height: 56,
+                padding: const EdgeInsets.only(top: 4),
+                shape: const CircularNotchedRectangle(),
+                notchMargin: 5,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    _buildMenuItem('home', appController),
+                    _buildMenuItem('gps', appController),
+                    const SizedBox(width: 45),
+                    _buildMenuItem('qr', appController),
+                    _buildMenuItem('setting', appController),
+                  ],
+                ),
+              )),
           body: Obx(() => IndexedStack(
-                index: landingPageController.tabIndex.value,
+                index: appController.tabIndex.value,
                 children: [
                   Home(),
                   const Gps(),
                   const QRCode(),
-                  const Settings(),
+                  const Setting(),
                 ],
               )),
         ));
+  }
+
+  ///Build Item Menu
+  Widget _buildMenuItem(String route, appController) {
+    Color? color = Colors.grey.shade600;
+    String title = 'หน้าหลัก';
+    int tabIndex = 0;
+    IconData iconData = Icons.help_outline;
+    switch (route) {
+      case 'home':
+        iconData = Icons.home_outlined;
+        title = 'หน้าหลัก';
+        tabIndex = 0;
+        break;
+      case 'gps':
+        iconData = Icons.gps_fixed;
+        title = 'จีพีเอส';
+        tabIndex = 1;
+        break;
+      case 'qr':
+        iconData = Icons.qr_code_2;
+        title = 'คิวอาร์';
+        tabIndex = 2;
+        break;
+      case 'setting':
+        iconData = Icons.settings_outlined;
+        title = 'ตั้งค่า';
+        tabIndex = 3;
+        break;
+      default:
+        iconData = Icons.home_outlined;
+        title = 'home';
+        break;
+    }
+    if (tabIndex == appController.tabIndex.value) {
+      color = Colors.blue.shade800;
+    }
+    return IconButton(
+      onPressed: () {
+        appController.changeTabIndex(tabIndex);
+      },
+      padding: EdgeInsets.zero,
+      icon: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            iconData,
+            color: color,
+          ),
+          Text(
+            title,
+            style: TextStyle(fontSize: 10, color: color),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          )
+        ],
+      ),
+    );
   }
 }

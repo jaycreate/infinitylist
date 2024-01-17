@@ -35,5 +35,6 @@ Color shadeColor(Color color, double factor) => Color.fromRGBO(
     1);
 
 class Palette {
-  static const Color primary = Color(0xFFffffff);
+  //Colors.blue.shade800
+  static const Color primary = Color.fromARGB(255, 21, 101, 192);
 }
