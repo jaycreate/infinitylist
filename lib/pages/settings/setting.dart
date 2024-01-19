@@ -12,9 +12,11 @@ class Setting extends StatelessWidget {
           title: const Text(
             "ตั้งค่าใช้งาน",
             style: TextStyle(
-                color: Colors.black87,
-                fontSize: 22,
-                fontWeight: FontWeight.bold),
+              color: Colors.black87,
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Prompt',
+            ),
           ),
           backgroundColor: Colors.grey[100],
           elevation: 0.3),

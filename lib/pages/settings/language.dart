@@ -13,9 +13,11 @@ class Language extends StatelessWidget {
           title: const Text(
             "ภาษา",
             style: TextStyle(
-                color: Colors.black87,
-                fontSize: 22,
-                fontWeight: FontWeight.bold),
+              color: Colors.black87,
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Prompt',
+            ),
           ),
           leading: IconButton(
               onPressed: () {
