@@ -32,4 +32,10 @@ appRoutes() => [
         transition: Transition.rightToLeftWithFade,
         // transitionDuration: const Duration(milliseconds: 500),
       ),
+      GetPage(
+        name: '/profile',
+        page: () => const Profile(),
+        transition: Transition.rightToLeftWithFade,
+        // transitionDuration: const Duration(milliseconds: 500),
+      ),
     ];

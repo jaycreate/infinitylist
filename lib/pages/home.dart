@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/configs/configs.dart';
 import 'package:flutter_application_4/controller/controller.dart';
+import 'package:flutter_application_4/utils/utils.dart';
 import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
@@ -31,9 +33,10 @@ class Home extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Infinity List",
-                            style: TextStyle(
+                          Text(
+                            lang(context, 'greeting'),
+                            style: const TextStyle(
+                              fontFamily: 'Prompt',
                               fontSize: 26,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -176,31 +179,32 @@ class Home extends StatelessWidget {
                 SizedBox(
                   width: 45,
                   height: 45,
-                  child: //Container()
-                      CachedNetworkImage(
-                    imageUrl: imageUrl,
-                    placeholder: (context, url) {
-                      return const Center(
-                        child: SizedBox(
-                          width: 25,
-                          height: 25,
-                          child: CircularProgressIndicator(
-                            color: Colors.grey,
-                            strokeWidth: 2,
-                          ),
+                  child: Application.debug
+                      ? Container()
+                      : CachedNetworkImage(
+                          imageUrl: imageUrl,
+                          placeholder: (context, url) {
+                            return const Center(
+                              child: SizedBox(
+                                width: 25,
+                                height: 25,
+                                child: CircularProgressIndicator(
+                                  color: Colors.grey,
+                                  strokeWidth: 2,
+                                ),
+                              ),
+                            );
+                          },
+                          errorWidget: (context, url, error) {
+                            // This was the reason for exception being triggered and rendered!
+                            return const Center(
+                              child: Text(
+                                'Error',
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                    errorWidget: (context, url, error) {
-                      // This was the reason for exception being triggered and rendered!
-                      return const Center(
-                        child: Text(
-                          'Error',
-                          style: TextStyle(color: Colors.red),
-                        ),
-                      );
-                    },
-                  ),
                 ),
                 const SizedBox(
                   width: 10,

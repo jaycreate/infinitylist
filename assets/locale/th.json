@@ -1,0 +1,11 @@
+{
+    "greeting": "ยินดีต้อนรับ",
+    "settings": "ตั้งค่าใช้งาน",
+    "language": "ภาษา",
+    "profile": "ข้อมูลส่วนตัว",
+    "button.save": "บันทึกข้อมูล",
+    "navbar.home": "หน้าหลัก",
+    "navbar.gps": "จีพีเอส",
+    "navbar.qrcode": "คิวอาร์",
+    "navbar.settings": "ตั้งค่า"
+}

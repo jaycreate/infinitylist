@@ -1,0 +1,11 @@
+{
+    "greeting": "Hello",
+    "settings": "Settings",
+    "language": "Language",
+    "profile": "profile",
+    "button.save": "Save",
+    "navbar.home": "Home",
+    "navbar.gps": "Gps",
+    "navbar.qrcode": "QrCode",
+    "navbar.settings": "Settings"
+}

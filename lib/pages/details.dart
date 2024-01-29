@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/utils/utils.dart';
 import 'package:flutter_application_4/widgets/app_text_input.dart';
 import 'package:get/get.dart';
 
@@ -96,9 +97,13 @@ class Details extends StatelessWidget {
                       const Divider(),
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: 20, right: 20, top: 15, bottom: 15),
+                          left: 20,
+                          right: 20,
+                          top: 15,
+                          bottom: 15,
+                        ),
                         child: AppTextInput(
-                          hintText: "พิมพ์ข้อความ",
+                          hintText: lang(context, 'account_info'),
                           trailing: GestureDetector(
                             onTap: () {},
                             child: const Icon(

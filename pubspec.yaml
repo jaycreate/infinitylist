@@ -17,6 +17,7 @@ dependencies:
   intl: 0.17.0
   location: 4.4.0
   google_maps_flutter: 2.1.7
+  get_storage: 2.1.1
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +29,7 @@ flutter:
   uses-material-design: true
   assets: 
     - assets/image/
+    - assets/locale/
   fonts:
     - family: Prompt
       fonts:

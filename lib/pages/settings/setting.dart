@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/utils/utils.dart';
 import 'package:flutter_application_4/widgets/app_list_tile.dart';
 import 'package:get/get.dart';
 
@@ -9,9 +10,9 @@ class Setting extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
-            "ตั้งค่าใช้งาน",
-            style: TextStyle(
+          title: Text(
+            lang(context, 'settings'),
+            style: const TextStyle(
               color: Colors.black87,
               fontSize: 22,
               fontWeight: FontWeight.bold,
@@ -23,7 +24,7 @@ class Setting extends StatelessWidget {
       body: ListView(
         children: [
           AppListTile(
-            title: "ข้อมูลส่วนตัว",
+            title: lang(context, 'profile'),
             leading: Icon(
               Icons.person_outline,
               color: Colors.grey.shade600,
@@ -32,10 +33,12 @@ class Setting extends StatelessWidget {
               Icons.chevron_right,
               color: Colors.grey.shade600,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed('/profile');
+            },
           ),
           AppListTile(
-            title: "ภาษา",
+            title: lang(context, 'language'),
             leading: Icon(
               Icons.language_outlined,
               color: Colors.grey.shade600,

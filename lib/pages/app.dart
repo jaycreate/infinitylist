@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/pages/pages.dart';
+import 'package:flutter_application_4/utils/utils.dart';
+import 'package:flutter_application_4/controller/controller.dart';
 import 'package:get/get.dart';
-
-import '../controller/controller.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -20,8 +20,8 @@ class App extends StatelessWidget {
             heroTag: 'mainfab',
             onPressed: () {},
             backgroundColor: Colors.blue.shade800,
+            elevation: 0,
             child: const Icon(Icons.add),
-            // elevation: 0,
           ),
           bottomNavigationBar: Obx(() => BottomAppBar(
                 height: 56,
@@ -31,11 +31,27 @@ class App extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _buildMenuItem('home', appController),
-                    _buildMenuItem('gps', appController),
+                    _buildMenuItem(
+                      'home',
+                      lang(context, "navbar.home"),
+                      appController,
+                    ),
+                    _buildMenuItem(
+                      'gps',
+                      lang(context, "navbar.gps"),
+                      appController,
+                    ),
                     const SizedBox(width: 45),
-                    _buildMenuItem('qr', appController),
-                    _buildMenuItem('setting', appController),
+                    _buildMenuItem(
+                      'qrcode',
+                      lang(context, "navbar.qrcode"),
+                      appController,
+                    ),
+                    _buildMenuItem(
+                      'setting',
+                      lang(context, "navbar.settings"),
+                      appController,
+                    ),
                   ],
                 ),
               )),
@@ -52,35 +68,30 @@ class App extends StatelessWidget {
   }
 
   ///Build Item Menu
-  Widget _buildMenuItem(String route, appController) {
+  Widget _buildMenuItem(String route, String title, appController) {
     Color? color = Colors.grey.shade600;
-    String title = 'หน้าหลัก';
+
     int tabIndex = 0;
     IconData iconData = Icons.help_outline;
     switch (route) {
       case 'home':
         iconData = Icons.home_outlined;
-        title = 'หน้าหลัก';
         tabIndex = 0;
         break;
       case 'gps':
         iconData = Icons.gps_fixed;
-        title = 'จีพีเอส';
         tabIndex = 1;
         break;
-      case 'qr':
+      case 'qrcode':
         iconData = Icons.qr_code_2;
-        title = 'คิวอาร์';
         tabIndex = 2;
         break;
       case 'setting':
         iconData = Icons.settings_outlined;
-        title = 'ตั้งค่า';
         tabIndex = 3;
         break;
       default:
         iconData = Icons.home_outlined;
-        title = 'home';
         break;
     }
     if (tabIndex == appController.tabIndex.value) {
