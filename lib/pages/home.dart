@@ -25,7 +25,8 @@ class Home extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 25, horizontal: 25),
                   alignment: Alignment.bottomCenter,
                   height: 170,
-                  decoration: BoxDecoration(color: Colors.blue.shade800),
+                  decoration:
+                      BoxDecoration(color: Theme.of(context).primaryColor),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -36,7 +37,6 @@ class Home extends StatelessWidget {
                           Text(
                             lang(context, 'greeting'),
                             style: const TextStyle(
-                              fontFamily: 'Prompt',
                               fontSize: 26,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -55,7 +55,10 @@ class Home extends StatelessWidget {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.1),
+                                // color: Colors.black.withOpacity(0.1),
+                                color: Theme.of(context)
+                                    .primaryColorDark
+                                    .withOpacity(0.5),
                                 borderRadius: BorderRadius.circular(10)),
                             child: IconButton(
                               icon: const Icon(
@@ -73,7 +76,9 @@ class Home extends StatelessWidget {
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.1),
+                                    color: Theme.of(context)
+                                        .primaryColorDark
+                                        .withOpacity(0.5),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: IconButton(
                                   icon: Stack(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/controller/controller.dart';
 import 'package:flutter_application_4/utils/utils.dart';
+import 'package:flutter_application_4/widgets/app_list_tile.dart';
 import 'package:get/get.dart';
-import '../../controller/controller.dart';
-import '../../widgets/widgets.dart';
 
 class Language extends StatelessWidget {
   const Language({super.key});
@@ -13,23 +13,8 @@ class Language extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           lang(context, 'language'),
-          style: const TextStyle(
-            color: Colors.black87,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Prompt',
-          ),
         ),
-        leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.chevron_left,
-              color: Colors.black87,
-            )),
-        backgroundColor: Colors.grey[100],
-        elevation: 0.3,
+        elevation: 0,
       ),
       body: GetBuilder<AppController>(builder: (controller) {
         return ListView(

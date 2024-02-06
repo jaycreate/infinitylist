@@ -2,10 +2,20 @@
     "greeting": "Hello",
     "settings": "Settings",
     "language": "Language",
-    "profile": "profile",
+    "profile": "Profile",
+    "account": "Account",
+    "phone": "Phone",
+    "email": "E-mail",
+    "password": "Password",
+    "login": "Please Login to system",
+    "login_btn": "Login",
+    "reset_password": "Reset Password",
+    "register": "Register",
     "button.save": "Save",
+    "button.logout": "Logout",
     "navbar.home": "Home",
     "navbar.gps": "Gps",
     "navbar.qrcode": "QrCode",
-    "navbar.settings": "Settings"
+    "navbar.settings": "Settings",
+    "navbar.account": "Account"
 }

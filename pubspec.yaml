@@ -31,6 +31,6 @@ flutter:
     - assets/image/
     - assets/locale/
   fonts:
-    - family: Prompt
+    - family: Kanit
       fonts:
-        - asset: assets/font/Prompt-Regular.ttf
+        - asset: assets/font/Kanit-Regular.ttf

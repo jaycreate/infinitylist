@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/configs/configs.dart';
-import 'package:flutter_application_4/pages/pages.dart';
+import 'package:flutter_application_4/pages/splash_view.dart';
 import 'package:flutter_application_4/utils/utils.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -19,9 +19,9 @@ class MainApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: Application.debug,
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey[100],
         primarySwatch: generateMaterialColor(Palette.primary),
-        // brightness: Brightness.light,
+        // brightness: Brightness.dark,
+        fontFamily: 'Kanit',
       ),
       localizationsDelegates: const [
         Translate.delegate,
@@ -31,7 +31,7 @@ class MainApp extends StatelessWidget {
       locale: UtilLanguage.getCurrentLanguage(Get.deviceLocale),
       fallbackLocale: AppLanguage.defaultLanguage,
       supportedLocales: AppLanguage.supportLanguage,
-      home: const App(),
+      home: SplashView(),
       getPages: appRoutes(),
     );
   }

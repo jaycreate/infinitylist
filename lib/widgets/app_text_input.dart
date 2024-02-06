@@ -104,9 +104,10 @@ class AppTextInput extends StatelessWidget {
         return GestureDetector(
           child: Container(
             decoration: BoxDecoration(
-              // color: Theme.of(context).dividerColor.withOpacity(.07),
-              color: Colors.grey[100],
-              border: Border.all(color: Colors.grey.shade300),
+              color: Theme.of(context).dividerColor.withOpacity(.02),
+              // color: Colors.grey[100],
+              border: Border.all(
+                  color: Theme.of(context).dividerColor.withOpacity(.1)),
               borderRadius: BorderRadius.circular(6),
             ),
             child: Stack(

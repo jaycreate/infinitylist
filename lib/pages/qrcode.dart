@@ -7,15 +7,11 @@ class QRCode extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
-            "QRCode",
-            style: TextStyle(
-                color: Colors.black87,
-                fontSize: 22,
-                fontWeight: FontWeight.bold),
-          ),
-          backgroundColor: Colors.grey[100],
-          elevation: 0.3),
+        title: const Text(
+          "QRCode",
+        ),
+        elevation: 0,
+      ),
       body: Container(),
     );
   }

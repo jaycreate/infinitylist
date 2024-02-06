@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/utils/utils.dart';
-import 'package:flutter_application_4/widgets/app_text_input.dart';
 import 'package:get/get.dart';
 
 import '../controller/controller.dart';
@@ -16,25 +15,14 @@ class Details extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Detail Page ${Get.arguments[0]}",
-          style: const TextStyle(
-              color: Colors.black87, fontSize: 22, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.grey[100],
-        elevation: 0.3,
-        leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.chevron_left,
-              color: Colors.black87,
-            )),
+        elevation: 0,
         actions: [
           IconButton(
               onPressed: () {},
               icon: const Icon(
                 Icons.share,
-                color: Colors.black87,
+                // color: Colors.black87,
               ))
         ],
       ),
@@ -91,9 +79,9 @@ class Details extends StatelessWidget {
                         ),
                       ),
                       const Divider(),
-                      orderCount("CTN", controller),
-                      orderCount("PACK", controller),
-                      orderCount("PCS", controller),
+                      orderCount("CTN", controller, context),
+                      orderCount("PACK", controller, context),
+                      orderCount("PCS", controller, context),
                       const Divider(),
                       Padding(
                         padding: const EdgeInsets.only(
@@ -108,7 +96,6 @@ class Details extends StatelessWidget {
                             onTap: () {},
                             child: const Icon(
                               Icons.clear,
-                              color: Colors.black12,
                             ),
                           ),
                         ),
@@ -131,7 +118,7 @@ class Details extends StatelessWidget {
     );
   }
 
-  Widget orderCount(String title, DetailsController controller) {
+  Widget orderCount(String title, DetailsController controller, context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
@@ -142,7 +129,7 @@ class Details extends StatelessWidget {
           Card(
             elevation: 0,
             // color: Colors.blue.shade800,
-            color: Colors.grey[200],
+            color: Theme.of(context).dividerColor.withOpacity(0.07),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
@@ -156,7 +143,7 @@ class Details extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
-                    color: Colors.grey[50],
+                    color: Colors.white.withOpacity(0.5),
                   ),
                   alignment: Alignment.centerRight,
                   width: 55,

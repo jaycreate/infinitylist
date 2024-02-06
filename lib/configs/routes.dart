@@ -38,4 +38,22 @@ appRoutes() => [
         transition: Transition.rightToLeftWithFade,
         // transitionDuration: const Duration(milliseconds: 500),
       ),
+      GetPage(
+        name: '/account',
+        page: () => Account(),
+        transition: Transition.rightToLeftWithFade,
+        // transitionDuration: const Duration(milliseconds: 500),
+      ),
+      GetPage(
+        name: '/login',
+        page: () => const Login(),
+        transition: Transition.rightToLeftWithFade,
+        // transitionDuration: const Duration(milliseconds: 500),
+      ),
+      GetPage(
+        name: '/splashscreen',
+        page: () => const SplashScreen(),
+        transition: Transition.rightToLeftWithFade,
+        // transitionDuration: const Duration(milliseconds: 500),
+      ),
     ];

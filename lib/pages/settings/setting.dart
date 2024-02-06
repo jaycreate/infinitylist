@@ -10,17 +10,11 @@ class Setting extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-            lang(context, 'settings'),
-            style: const TextStyle(
-              color: Colors.black87,
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Prompt',
-            ),
-          ),
-          backgroundColor: Colors.grey[100],
-          elevation: 0.3),
+        title: Text(
+          lang(context, 'settings'),
+        ),
+        elevation: 0,
+      ),
       body: ListView(
         children: [
           AppListTile(

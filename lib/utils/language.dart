@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/configs/configs.dart';
+import 'package:flutter_application_4/utils/preferences.dart';
 import 'package:flutter_application_4/utils/translate.dart';
-import 'package:get_storage/get_storage.dart';
 
 String lang(BuildContext context, String key) {
   return Translate.of(context).translate(key);
@@ -24,8 +24,7 @@ class UtilLanguage {
 
   ///Current Language
   static Locale getCurrentLanguage(deviceLocale) {
-    final box = GetStorage();
-    var code = box.read('lang') ?? deviceLocale;
+    var code = UtilPreferences.get(Preferences.language) ?? deviceLocale;
 
     switch (code) {
       case 'en':

@@ -6,3 +6,7 @@ export 'qrcode.dart';
 export 'settings/setting.dart';
 export 'settings/language.dart';
 export 'settings/profile.dart';
+export 'settings/account.dart';
+export 'authen/login.dart';
+export 'authen/reset_password.dart';
+export 'splashscreen.dart';

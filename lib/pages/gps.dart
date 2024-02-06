@@ -17,13 +17,8 @@ class Gps extends StatelessWidget {
           appBar: AppBar(
             title: const Text(
               "Gps Tracking",
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold),
             ),
-            backgroundColor: Colors.grey[100],
-            elevation: 0.3,
+            elevation: 0,
           ),
           body: GetBuilder<GpsController>(
               init: GpsController(),

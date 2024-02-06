@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/configs/configs.dart';
 import 'package:flutter_application_4/pages/pages.dart';
 import 'package:flutter_application_4/utils/utils.dart';
 import 'package:flutter_application_4/controller/controller.dart';
@@ -14,15 +15,15 @@ class App extends StatelessWidget {
     return SafeArea(
         top: false,
         child: Scaffold(
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: FloatingActionButton(
-            heroTag: 'mainfab',
-            onPressed: () {},
-            backgroundColor: Colors.blue.shade800,
-            elevation: 0,
-            child: const Icon(Icons.add),
-          ),
+          // floatingActionButtonLocation:
+          //     FloatingActionButtonLocation.centerDocked,
+          // floatingActionButton: FloatingActionButton(
+          //   heroTag: 'mainfab',
+          //   onPressed: () {},
+          //   backgroundColor: Palette.primary,
+          //   elevation: 0,
+          //   child: const Icon(Icons.add),
+          // ),
           bottomNavigationBar: Obx(() => BottomAppBar(
                 height: 56,
                 padding: const EdgeInsets.only(top: 4),
@@ -41,7 +42,7 @@ class App extends StatelessWidget {
                       lang(context, "navbar.gps"),
                       appController,
                     ),
-                    const SizedBox(width: 45),
+                    // const SizedBox(width: 45),
                     _buildMenuItem(
                       'qrcode',
                       lang(context, "navbar.qrcode"),
@@ -50,6 +51,11 @@ class App extends StatelessWidget {
                     _buildMenuItem(
                       'setting',
                       lang(context, "navbar.settings"),
+                      appController,
+                    ),
+                    _buildMenuItem(
+                      'account',
+                      lang(context, "navbar.account"),
                       appController,
                     ),
                   ],
@@ -62,6 +68,7 @@ class App extends StatelessWidget {
                   const Gps(),
                   const QRCode(),
                   const Setting(),
+                  Account(),
                 ],
               )),
         ));
@@ -90,12 +97,16 @@ class App extends StatelessWidget {
         iconData = Icons.settings_outlined;
         tabIndex = 3;
         break;
+      case 'account':
+        iconData = Icons.person_outline_rounded;
+        tabIndex = 4;
+        break;
       default:
         iconData = Icons.home_outlined;
         break;
     }
     if (tabIndex == appController.tabIndex.value) {
-      color = Colors.blue.shade800;
+      color = Palette.primary;
     }
     return IconButton(
       onPressed: () {

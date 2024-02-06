@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/utils/utils.dart';
-import 'package:flutter_application_4/widgets/app_text_input.dart';
 import 'package:flutter_application_4/widgets/widgets.dart';
 import 'package:get/get.dart';
 
@@ -13,23 +12,8 @@ class Profile extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           lang(context, 'profile'),
-          style: const TextStyle(
-            color: Colors.black87,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Prompt',
-          ),
         ),
-        leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.chevron_left,
-              color: Colors.black87,
-            )),
-        backgroundColor: Colors.grey[100],
-        elevation: 0.3,
+        elevation: 0,
       ),
       body: Column(
         children: [
@@ -49,17 +33,20 @@ class Profile extends StatelessWidget {
                     onTap: () {},
                     child: const Icon(
                       Icons.clear,
-                      color: Colors.black12,
                     ),
                   ),
                 ),
               ],
             ),
           )),
-          AppButton(
-            lang(context, 'button.save'),
-            onPressed: () => Get.back(),
-            mainAxisSize: MainAxisSize.max,
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
+            child: AppButton(
+              lang(context, 'button.save'),
+              onPressed: () => Get.back(),
+              mainAxisSize: MainAxisSize.max,
+            ),
           ),
         ],
       ),
